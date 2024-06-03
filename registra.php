@@ -13,9 +13,9 @@ $cognome = $_POST["cognome"];
 $nome = $_POST["nome"];  
 $email = strtolower($_POST["email"]);  
 $telefono = $_POST["numtel"];  
-$password = $_POST["password"] ;
+$password = password_hash($_POST["password"], PASSWORD_DEFAULT); ;
 // comando SQL  
-$sql = "INSERT INTO utente (cognome, nome, username, telefono, password) ";  
+$sql = "INSERT INTO utente (cognome, nome, email, telefono, password) ";  
 $sql .= "VALUES ('$cognome', '$nome', '$email', '$telefono', '$password')";  
 if ($conn->query($sql)) {         
     // Utente registrato correttamente, mostra un alert
