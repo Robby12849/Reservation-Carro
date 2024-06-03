@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class="topnav">
+    <a class="active" href="index.html">Home</a>
+    <a onclick="showlogin();">LOGIN</a>
+    <a onclick="showsignup();">REGISTRATI</a>
+    <a href="storia.html">STORIA</a>
+  </div>
+  <h1> BENVENUTI AL CARRO DI ANGELO MUSCATELLI</h1>
+  <div class="ls_container">
+    <div id="login" class="platform login">
+      <h2>LOGIN</h2>
+      <form action="controllalogin.php" method="post">
+        <br>
+        <input type="text" name="username" placeholder="USERNAME"><br>
+        <input type="password" name="password" placeholder="PASSWORD"><br>
+        <input type="submit" value="LOGIN"><br>
+      </form>
+    </div>
+    <div id="signup" class="platform signup posabsolute" style="display:none;">
+      <h2>REGISTRATI</h2>
+      <form action="registra.php" method="post">
+        <input type="text" name="nome" placeholder="NOME"><br>
+        <input type="text" name="cognome" placeholder="COGNOME"><br>
+        <input type="text" name="email" placeholder="EMAIL"><br>
+        <input type="password" name="password" placeholder="PASSWORD"><br>
+        <input type="number" name="numtel" placeholder="NUMERO DI TELEFONO"><br>
+        <input type="submit" value="REGISTRATI"><br>
+      </form>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    function showlogin() {
+      document.getElementById('login').style.display = 'block';
+      document.getElementById('signup').style.display = 'none';
+    }
+    function showsignup() {
+      document.getElementById('login').style.display = 'none';
+      document.getElementById('signup').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
