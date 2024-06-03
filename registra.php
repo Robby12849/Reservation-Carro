@@ -13,7 +13,7 @@ $cognome = $_POST["cognome"];
 $nome = $_POST["nome"];  
 $email = strtolower($_POST["email"]);  
 $telefono = $_POST["numtel"];  
-$password = password_hash($_POST["password"], PASSWORD_DEFAULT);  
+$password = $_POST["password"] ;
 // comando SQL  
 $sql = "INSERT INTO utente (cognome, nome, username, telefono, password) ";  
 $sql .= "VALUES ('$cognome', '$nome', '$email', '$telefono', '$password')";  
