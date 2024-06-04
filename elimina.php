@@ -18,7 +18,7 @@ if(isset($_POST['elimina'])) {
     // Query per eliminare il record corrispondente
     $sql = "DELETE FROM prenotazione WHERE data='$data' AND quota_versata='$quota_versata'";
     if ($conn->query($sql) === TRUE) {
-        echo "Record eliminato con successo";
+        echo "<script>window.location.href='paginaadmin.php' </script>";
     } else {
         echo "Errore durante l'eliminazione del record: " . $conn->error;
     }

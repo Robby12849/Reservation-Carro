@@ -69,10 +69,10 @@
         $sql1 = "SELECT ID_utente, nome, cognome, email, telefono FROM utente WHERE ruolo = 'partecipante'";
         $result1 = $conn->query($sql1);
 
-        $utenti = [];
+        //$utenti = [];
         if ($result1->num_rows > 0) {
             while($row1 = $result1->fetch_assoc()) {
-                $utenti[$row1['ID_utente']] = $row1;
+          //      $utenti[$row1['ID_utente']] = $row1;
                 echo "<tr>";
                 echo "<td>" . $row1["nome"] . "</td>";
                 echo "<td>" . $row1["cognome"] . "</td>";

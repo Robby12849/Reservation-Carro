@@ -150,7 +150,7 @@ if (isset($_SESSION['ID_utente'])) {
         }
         echo "</table>";
     } else {
-        echo "<p>Nessuna prenotazione trovata per questo utente.</p>";
+        echo "<p>Nessun pagamento effettuato da questo utente.</p>";
     }
     $conn->close();
 }
