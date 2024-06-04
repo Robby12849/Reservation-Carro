@@ -1,0 +1,17 @@
+footer{
+    margin-top: 10px;
+    background-color: #333 ;
+    height : 100px;
+    display: flex;
+    padding: 20px;
+    font-weight: bold;
+    font-size: large;
+}
+footer div{
+width:100%;
+color: white;
+}
+footer a {
+    color: red;
+    text-decoration: none;
+}

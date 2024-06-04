@@ -3,7 +3,7 @@
 <head> 
     <meta charset="UTF-8">
     <title>ADMIN PAGE</title>
-    <link rel="stylesheet" type="text/css" href="navbar.css">
+    <link rel="stylesheet" type="text/css" href="css/navbar.css">
     <style>
         .table-container {
             display: flex;

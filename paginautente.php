@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>INSERISCI PRENOTAZIONE</title>
-<link rel="stylesheet" type="text/css" href="navbar.css">
+<link rel="stylesheet" type="text/css" href="css/navbar.css">
 <style>
 .table-container {
   margin-top: 20px;
