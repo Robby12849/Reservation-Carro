@@ -6,6 +6,10 @@
 <title>INSERISCI PRENOTAZIONE</title>
 <link rel="stylesheet" type="text/css" href="css/navbar.css">
 <style>
+  h2{
+    text-align: center;
+
+  }
 .table-container {
   margin-top: 20px;
 }

@@ -43,8 +43,11 @@ input[type="submit"] {
     cursor: pointer;
 }
 </style>
+
 </head>
 <body>
+<script src="js/materiali.js">
+</script> 
 <div class="topnav">
     <a class="active" href="index.html">Home</a>
     <a href="storia.html">STORIA</a>    
@@ -67,7 +70,9 @@ input[type="submit"] {
                 <th>Nome</th>
                 <th>Quantità</th>
                 <th>Prezzo</th>
-                <th>Azioni</th> <!-- Aggiunta la colonna per le azioni -->
+                <th>Prezzo Totale</th>
+                <th>Quantità acquistata</th>
+                <th>Azioni</th>
             </tr>
         </thead>
         <tbody>
@@ -88,12 +93,15 @@ input[type="submit"] {
                 // Se è stato inviato un modulo
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Assicurati che i dati siano stati inviati correttamente
-                    if(isset($_POST["nome"], $_POST["quantita"], $_POST["prezzo"])) {
+                    if(isset($_POST["nome"], $_POST["quantita"], $_POST["prezzo"], $_POST["prezzo_totale"])) {
                         // Prendi i dati dal modulo
                         $nome = $_POST["nome"];
                         $quantita = $_POST["quantita"];
                         $prezzo = $_POST["prezzo"];
-                        // Esegui la query per aggiornare i dati nel database
+                        $prezzo_totale = $_POST["prezzo_totale"];
+                        $quantità = $_POST["quantity"];
+                        $_SESSION['prezzo_totale'] = $prezzo_totale;
+                        $_SESSION['quantity'] = $quantity;
                         for($i = 0; $i < count($nome); $i++) {
                             $sql = "UPDATE materiali SET quantità = '{$quantita[$i]}' WHERE nome = '{$nome[$i]}'";
                             if ($conn->query($sql) !== TRUE) {
@@ -111,14 +119,16 @@ input[type="submit"] {
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td><input type='text' name='nome[]' value='" . $row["nome"] . "'></td>";
-                        echo "<td><input type='number' name='quantita[]' value='" . $row["quantità"] . "'></td>";
-                        echo "<td><input type='number' name='prezzo[]' value='" . $row["prezzo_materiale"] . "'></td>";
+                        echo "<td><input type='text' name='nome[]' value='" . $row["nome"] . "' readonly></td>";
+                        echo "<td><input type='number' name='quantita[]' value='" . $row["quantità"] . "' max='" . $row["quantità"] . "' onchange='calculateTotal(this.parentNode.parentNode)'></td>";
+                        echo "<td><input type='number' name='prezzo[]' value='" . $row["prezzo_materiale"] . "' readonly></td>";
+                        echo "<td><input type='number' name='prezzo_totale[]' value='0' readonly></td>";
+                        echo "<td><input type='number' name='quantità[]' value='0' readonly></td>";
                         echo "<td><input type='submit' value='Modifica'></td>"; 
                         echo "</tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='4'>Nessun materiale trovato.</td></tr>";
+                    echo "<tr><td colspan='5'>Nessun materiale trovato.</td></tr>";
                 }
                 // Chiudi la connessione al database
                 $conn->close();

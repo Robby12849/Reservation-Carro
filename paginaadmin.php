@@ -41,7 +41,8 @@
 <body>
 <div class="topnav">
     <a class="active" href="index.html">Home</a>
-    <a href="storia.html">STORIA</a>    
+    <a href="storia.html">STORIA</a> 
+    <a href="contabilità.php"> BILANCIO </a>   
     <?php
     session_start(); 
     if (isset($_SESSION['nome'])) {
@@ -97,13 +98,13 @@
                 echo "<td>" . $row1["cognome"] . "</td>";
                 echo "<td><a href='mailto:" . $row1["email"] . "'>" . $row1["email"] . "</a></td>";
                 echo "<td><a href='tel:" . $row1["telefono"] . "'>" . $row1["telefono"] . "</a></td>";
-                echo "<td>
+                echo " <td>
                 <form method='post' action='eliminautente.php'>
                     <input type='hidden' name='nome' value='" . $row1["nome"] . "'>
                     <input type='hidden' name='cognome' value='" . $row1["cognome"] . "'>
                     <button type='submit' name='elimina'>Elimina</button>
                 </form>
-                </td>";
+                </td> ";
             echo "</tr>";
             }
         } else {
