@@ -95,13 +95,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->connect_error) {
         echo"Connessione fallita: " . $conn->connect_error;
     }
-
     // Recupera l'ID utente dalla sessione
     $id_utente = $_SESSION['ID_utente'];
-
     // Recupera la quota versata dal form
     $quota_versata = $_POST['quota_versata'];
-
     // Query per inserire la quota versata nel database
     $sql_insert = "INSERT INTO prenotazione (ID_utente, quota_versata) VALUES ($id_utente, $quota_versata)";
     if ($conn->query($sql_insert) === TRUE) {
