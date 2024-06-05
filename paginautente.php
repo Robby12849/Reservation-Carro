@@ -63,7 +63,8 @@
 <div class="topnav">
     <a class="active" href="index.html">Home</a>
     <a href="admin.html">CONTATTI</a>
-    <a href="storia.html">STORIA</a>    
+    <a href="storia.html">STORIA</a>
+    <a href="gestiscimaterialiut.php"> MATERIALI</a>    
     <?php
 session_start(); 
 if (isset($_SESSION['nome'])) {
@@ -116,7 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 // Mostra l'alert solo se l'inserimento è stato appena eseguito con successo
 if (isset($_SESSION['insert_success']) && $_SESSION['insert_success'] === true) {
-    echo "<script>alert('Dati inseriti con successo');</script>";
+    echo "<script>alert('Prenotazione e pagamento  inseriti con successo');</script>";
     unset($_SESSION['insert_success']); // Pulisci la variabile di sessione
 }
 // Visualizzazione delle prenotazioni dell'utente
@@ -150,7 +151,7 @@ if (isset($_SESSION['ID_utente'])) {
         }
         echo "</table>";
     } else {
-        echo "<p>Nessun pagamento effettuato da questo utente.</p>";
+        echo "<p>Nessun pagamento effettuato</p>";
     }
     $conn->close();
 }
