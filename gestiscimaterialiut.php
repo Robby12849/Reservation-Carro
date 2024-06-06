@@ -66,11 +66,11 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "db_carro";
-// Connessione al database
+
 $conn = new mysqli($servername, $username, $password, $dbname);
-// Verifica della connessione
+
 if ($conn->connect_error) {
-    die("Connessione fallita: " . $conn->connect_error);
+    echo "Connessione fallita: " . $conn->connect_error;
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

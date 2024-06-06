@@ -73,7 +73,43 @@
             </tr>
         </thead>
         <tbody>
+        <?php
 
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "db_carro";
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        if ($conn->connect_error) {
+            echo "Connessione fallita: " . $conn->connect_error;
+        }
+
+        $sql1 = "SELECT ID_utente, nome, cognome, email, telefono FROM utente WHERE ruolo = 'partecipante'";
+        $result1 = $conn->query($sql1);
+
+        $utenti = [];
+    
+        if ($result1->num_rows > 0) {
+            while($row1 = $result1->fetch_assoc()) {
+                $utenti[$row1['ID_utente']] = $row1;
+                echo "<tr>";
+                echo "<td>" . $row1["nome"] . "</td>";
+                echo "<td>" . $row1["cognome"] . "</td>";
+                echo "<td><a href='mailto:" . $row1["email"] . "'>" . $row1["email"] . "</a></td>";
+                echo "<td><a href='tel:" . $row1["telefono"] . "'>" . $row1["telefono"] . "</a></td>";
+                echo "<td>
+                <form method='post' action='eliminautente.php'>
+                    <input type='hidden' name='nome' value='" . $row1["nome"] . "'>
+                    <input type='hidden' name='cognome' value='" . $row1["cognome"] . "'>
+                    <button type='submit' name='elimina'>Elimina</button>
+                </form>
+                </td>";
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr><td colspan='4'>Nessun utente trovato.</td></tr>";
+        }
+        ?>
         
         </tbody>
     </table>
@@ -98,7 +134,7 @@
             if ($conn->connect_error) {
                 echo "Connessione fallita: " . $conn->connect_error;
             }
-        // Query per la seconda tabella
+
         $sql2 = "SELECT prenotazione.data, prenotazione.quota_versata, utente.nome, utente.cognome, utente.ID_utente
                  FROM prenotazione
                  INNER JOIN utente ON prenotazione.ID_utente = utente.ID_utente";

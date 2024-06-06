@@ -5,7 +5,7 @@ $password = "";
 $db_nome = "db_carro";  
 $tab_nome = "utente";  
 
-// Connessione al server  
+ 
 $conn = new mysqli($host, $username, $password, $db_nome);     
 
 if ($conn->connect_errno) {        
@@ -13,13 +13,13 @@ if ($conn->connect_errno) {
     exit;     
 }  
 
-// Acquisizione dati dal form HTML  
+  
 $email = strtolower($_POST["email"]);  
 $password = $_POST["password"];   
 $password = stripslashes($password);  
 $email = $conn->real_escape_string($email);  
 $password = $conn->real_escape_string($password);
-// Lettura della tabella utenti  
+  
 $controllo = false;  
 $sql = "SELECT * FROM $tab_nome WHERE email='$email'";  
 $result = $conn->query($sql);  

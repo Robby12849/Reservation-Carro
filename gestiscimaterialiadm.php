@@ -80,37 +80,37 @@ input[type="submit"] {
                 $password = "";
                 $dbname = "db_carro";
 
-                // Connessione al database
+                
                 $conn = new mysqli($servername, $username, $password, $dbname);
 
-                // Verifica della connessione
+                
                 if ($conn->connect_error) {
                     echo "Connessione fallita: " . $conn->connect_error;
                 }
                 
-                // Se è stato inviato un modulo
+                
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    // Assicurati che i dati siano stati inviati correttamente
+                    
                     if(isset($_POST["nome"], $_POST["quantita"], $_POST["prezzo"])) {
-                        // Prendi i dati dal modulo
+                        
                         $nome = $_POST["nome"];
                         $quantita = $_POST["quantita"];
                         $prezzo = $_POST["prezzo"];
-                        // Esegui la query per aggiornare i dati nel database
+                        
                         for($i = 0; $i < count($nome); $i++) {
                             $sql = "UPDATE materiali SET quantità = '{$quantita[$i]}', prezzo_materiale = '{$prezzo[$i]}' WHERE nome = '{$nome[$i]}'";
                             if ($conn->query($sql) !== TRUE) {
                                 echo "Errore nell'aggiornamento dei dati: " . $conn->error;
                             }
                         }
-                        // Reindirizza alla stessa pagina dopo l'aggiornamento
+                       
                         header("Location: " . $_SERVER['PHP_SELF']);
                     } else {
                         echo "Assicurati di compilare tutti i campi.";
                     }
                 }
 
-                // Query per selezionare tutti i dati dei materiali
+                
                 $sql_select = "SELECT * FROM materiali";
                 $result = $conn->query($sql_select);
                 if ($result->num_rows > 0) {
