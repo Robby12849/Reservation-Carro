@@ -8,7 +8,6 @@
 <style>
   h2{
     text-align: center;
-
   }
 .table-container {
   margin-top: 20px;
@@ -100,12 +99,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo"Connessione fallita: " . $conn->connect_error;
     }
     // Recupera l'ID utente dalla sessione
+
     $id_utente = $_SESSION['ID_utente'];
+    $_SESSION['ID_utente'] = $id_utente;
     // Recupera la quota versata dal form
     $quota_versata = $_POST['quota_versata'];
     // Query per inserire la quota versata nel database
     $sql_insert = "INSERT INTO prenotazione (ID_utente, quota_versata) VALUES ($id_utente, $quota_versata)";
     if ($conn->query($sql_insert) === TRUE) {
+        // Recupera l'ID_prenotazione dell'ultima inserzione
+        $id_prenotazione = $conn->insert_id;
+        $_SESSION['ID_prenotazione'] = $id_prenotazione; // Memorizza l'ID prenotazione nella sessione
         $_SESSION['insert_success'] = true; // Memorizza lo stato dell'inserimento nella sessione
         header("Location: {$_SERVER['PHP_SELF']}"); // Ricarica la pagina
         exit();
@@ -156,11 +160,7 @@ if (isset($_SESSION['ID_utente'])) {
     }
     $conn->close();
 }
-// pass 1234
 ?>
-
 </div>
 </body>
 </html>
-
-

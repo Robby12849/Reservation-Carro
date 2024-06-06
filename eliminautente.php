@@ -24,4 +24,3 @@ if(isset($_POST['elimina'])) {
     }
         $conn->close();
 }
-?>

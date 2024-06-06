@@ -49,7 +49,9 @@ input[type="submit"] {
 <div class="topnav">
     <a class="active" href="index.html">Home</a>
     <a href="storia.html">STORIA</a>
-    <a href="paginaadmin.html">STORIA</a>    
+    <a href="paginaadmin.html">STORIA</a>
+    <a href="contabilità.php">BILANCIO</a>   
+    <a onclick="openForm()">AGGIUNGI QUOTA</a>
     <?php
     session_start(); 
     if (isset($_SESSION['nome'])) {
@@ -57,7 +59,6 @@ input[type="submit"] {
         echo "<a href='logout.php'>LOGOUT $nome_maiuscolo</a>"; 
     }
     ?>
-    <a onclick="openForm()">AGGIUNGI QUOTA</a>
 </div>
 
 <h1>Modifica Dati Materiale</h1>
