@@ -19,7 +19,7 @@ function setQuantitaAcquistata(row) {
     var quantitaAcquistataInput = row.querySelector("input[name='quantita_acquistata[]']");
     quantitaAcquistataInput.value = quantitaAcquistata;
     
-    calculateTotal(row); // Update the total price when the quantity acquired changes
+    calculateTotal(row); 
 }
 
 

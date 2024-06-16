@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>INSERISCI PRENOTAZIONE</title>
-<link rel="stylesheet" type="text/css" href="css/navbar.css">
+<link rel="stylesheet" type="text/css" href="../css/navbar.css">
 <style>
   h2{
     text-align: center;
@@ -64,15 +64,15 @@
 </head>
 <body>
 <div class="topnav">
-    <a class="active" href="index.html">Home</a>
-    <a href="admin.html">CONTATTI</a>
-    <a href="storia.html">STORIA</a>
+    <a class="active" href="../index.html">Home</a>
+    <a href="../pre-login/admin.html">CONTATTI</a>
+    <a href="../pre-login/storia.html">STORIA</a>
     <a href="gestiscimaterialiut.php"> MATERIALI</a>    
     <?php
 session_start(); 
 if (isset($_SESSION['nome'])) {
     $nome_maiuscolo = strtoupper($_SESSION['nome']);
-    echo "<a href='logout.php'>LOGOUT $nome_maiuscolo</a>"; 
+    echo "<a href='../pre-login/logout.php'>LOGOUT $nome_maiuscolo</a>"; 
 }
 ?>
 </div>
@@ -86,64 +86,31 @@ Inserisci quota versata<br>
 <div class="table-container">
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $servername = "localhost"; 
-    $username = "root";
-    $password = ""; 
-    $dbname = "db_carro"; 
-
-    // Connessione
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Controlla la connessione
-    if ($conn->connect_error) {
-        echo"Connessione fallita: " . $conn->connect_error;
-    }
-    // Recupera l'ID utente dalla sessione
-
+  include '../conn/connessione.php';
     $id_utente = $_SESSION['ID_utente'];
     $_SESSION['ID_utente'] = $id_utente;
-    // Recupera la quota versata dal form
     $quota_versata = $_POST['quota_versata'];
-    // Query per inserire la quota versata nel database
     $sql_insert = "INSERT INTO prenotazione (ID_utente, quota_versata) VALUES ($id_utente, $quota_versata)";
     if ($conn->query($sql_insert) === TRUE) {
-        // Recupera l'ID_prenotazione dell'ultima inserzione
         $id_prenotazione = $conn->insert_id;
-        $_SESSION['ID_prenotazione'] = $id_prenotazione; // Memorizza l'ID prenotazione nella sessione
-        $_SESSION['insert_success'] = true; // Memorizza lo stato dell'inserimento nella sessione
-        header("Location: {$_SERVER['PHP_SELF']}"); // Ricarica la pagina
+        $_SESSION['ID_prenotazione'] = $id_prenotazione; 
+        $_SESSION['insert_success'] = true; 
+        header("Location: {$_SERVER['PHP_SELF']}");
         exit();
     } else {
         echo "Errore nell'inserimento dei dati: " . $conn->error;
     }
-
-    // Chiudi la connessione
     $conn->close();
 }
-// Mostra l'alert solo se l'inserimento è stato appena eseguito con successo
 if (isset($_SESSION['insert_success']) && $_SESSION['insert_success'] === true) {
-    echo "<script>alert('Prenotazione e pagamento  inseriti con successo');</script>";
-    unset($_SESSION['insert_success']); // Pulisci la variabile di sessione
+    echo "<script>alert('Pagamento  inserito con successo');</script>";
+    unset($_SESSION['insert_success']);
 }
-// Visualizzazione delle prenotazioni dell'utente
 if (isset($_SESSION['ID_utente'])) {
-    $servername = "localhost"; 
-    $username = "root";
-    $password = ""; 
-    $dbname = "db_carro"; 
-    // Connessione al database
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Controlla la connessione
-    if ($conn->connect_error) {
-        echo"Connessione fallita: " . $conn->connect_error;
-    }
-    // Recupera l'ID utente dalla sessione
+  include '../conn/connessione.php';
     $id_utente = $_SESSION['ID_utente'];
-    // Query per selezionare le prenotazioni dell'utente corrente
     $sql_select = "SELECT quota_versata, data FROM prenotazione WHERE ID_utente = $id_utente";
     $result = $conn->query($sql_select);
-    // Visualizzazione dei risultati in una tabella
     if ($result->num_rows > 0) {
         echo "<h2>QUOTE VERSATE</h2>";
         echo "<table>";

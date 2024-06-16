@@ -3,8 +3,8 @@
 <head> 
     <meta charset="UTF-8">
     <title>ADMIN PAGE</title>
-    <link rel="stylesheet" type="text/css" href="css/navbar.css">
-    <link rel="stylesheet" type="text/css" href="css/popup.css">
+    <link rel="stylesheet" type="text/css" href="../css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="../css/popup.css">
     <style>
         .table-container {
             display: flex;
@@ -39,21 +39,21 @@
 </head>
 <body>
 <div class="topnav">
-    <a class="active" href="index.html">Home</a>
-    <a href="storia.html">STORIA</a> 
+    <a class="active" href="../index.html">Home</a>
+    <a href="../pre-login/storia.html">STORIA</a> 
     <a href="contabilità.php"> BILANCIO </a>   
     <?php
     session_start(); 
     if (isset($_SESSION['nome'])) {
         $nome_maiuscolo = strtoupper($_SESSION['nome']);
-        echo "<a href='logout.php'>LOGOUT $nome_maiuscolo</a>"; 
+        echo "<a href='../pre-login/logout.php'>LOGOUT $nome_maiuscolo</a>"; 
     }
     ?>
     <a href="gestiscimaterialiadm.php"> MATERIALI </a> 
     <a onclick="openForm()">AGGIUNGI QUOTA</a>
 </div>
 <div class="form-popup" id="myForm">
-    <form action="insert_quota.php" method="post" class="form-container">
+    <form action="insert_quotaadm.php" method="post" class="form-container">
         <h1>QUOTE</h1>
         <label for="prezzo"><b>INSERISCI QUOTA PAGATA</b></label>
         <input type="number" placeholder="INSERISCI QUOTA" name="prezzo" min="15" value="15" required>
@@ -75,14 +75,7 @@
         <tbody>
         <?php
 
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "db_carro";
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        if ($conn->connect_error) {
-            echo "Connessione fallita: " . $conn->connect_error;
-        }
+include '../conn/connessione.php';
 
         $sql1 = "SELECT ID_utente, nome, cognome, email, telefono FROM utente WHERE ruolo = 'partecipante'";
         $result1 = $conn->query($sql1);
@@ -126,14 +119,7 @@
         </thead> 
         <tbody>
         <?php
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "db_carro";
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            if ($conn->connect_error) {
-                echo "Connessione fallita: " . $conn->connect_error;
-            }
+include '../conn/connessione.php';
 
         $sql2 = "SELECT prenotazione.data, prenotazione.quota_versata, utente.nome, utente.cognome, utente.ID_utente
                  FROM prenotazione
@@ -165,7 +151,6 @@
         </tbody>
     </table>
 </div>
-
-<script src="js/popup.js"></script>
+<script src="../js/popup.js"></script>
 </body>
 </html>

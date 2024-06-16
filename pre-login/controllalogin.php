@@ -42,12 +42,12 @@ if ($controllo) {
     $_SESSION['ID_utente'] = $id;
     $_SESSION['nome'] = $nome;
     if ($ruolo == 'admin') {
-        header("Location: paginaadmin.php");
+        header("Location: ../admin/paginaadmin.php");
     } else {
-        header("Location: paginautente.php"); 
+        header("Location: ../user/paginautente.php"); 
     }
 } else {        
-    echo '<script>alert("Credenziali Errate"); window.location = "index.html";</script>';
+    echo '<script>alert("Credenziali Errate"); window.location = "../index.html";</script>';
 }
 
 // pass vincymata

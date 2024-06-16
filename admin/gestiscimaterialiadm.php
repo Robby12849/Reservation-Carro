@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <title> MATERIALI </title>
-<link rel="stylesheet" type="text/css" href="css/navbar.css">
-<link rel="stylesheet" type="text/css" href="css/popup.css">
+<link rel="stylesheet" type="text/css" href="../css/navbar.css">
+<link rel="stylesheet" type="text/css" href="../css/popup.css">
 <style>
 /* Stili per la tabella */
 table {
@@ -46,9 +46,10 @@ input[type="submit"] {
 </style>
 </head>
 <body>
+    
 <div class="topnav">
-    <a class="active" href="index.html">Home</a>
-    <a href="storia.html">STORIA</a>
+    <a class="active" href="../index.html">Home</a>
+    <a href="../pre-login/storia.html">STORIA</a>
     <a href="paginaadmin.html">STORIA</a>
     <a href="contabilità.php">BILANCIO</a>   
     <a onclick="openForm()">AGGIUNGI QUOTA</a>
@@ -56,7 +57,7 @@ input[type="submit"] {
     session_start(); 
     if (isset($_SESSION['nome'])) {
         $nome_maiuscolo = strtoupper($_SESSION['nome']);
-        echo "<a href='logout.php'>LOGOUT $nome_maiuscolo</a>"; 
+        echo "<a href='../pre-login/logout.php'>LOGOUT $nome_maiuscolo</a>"; 
     }
     ?>
 </div>
@@ -70,23 +71,11 @@ input[type="submit"] {
                 <th>Nome</th>
                 <th>Quantità</th>
                 <th>Prezzo</th>
-                <th>Azioni</th> <!-- Aggiunta la colonna per le azioni -->
-            </tr>
+                <th>Azioni</th>             </tr>
         </thead>
         <tbody>
             <?php
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "db_carro";
-
-                
-                $conn = new mysqli($servername, $username, $password, $dbname);
-
-                
-                if ($conn->connect_error) {
-                    echo "Connessione fallita: " . $conn->connect_error;
-                }
+include '../conn/connessione.php';
                 
                 
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -98,7 +87,7 @@ input[type="submit"] {
                         $prezzo = $_POST["prezzo"];
                         
                         for($i = 0; $i < count($nome); $i++) {
-                            $sql = "UPDATE materiali SET quantità = '{$quantita[$i]}', prezzo_materiale = '{$prezzo[$i]}' WHERE nome = '{$nome[$i]}'";
+                            $sql = "UPDATE materiale SET quantità = '{$quantita[$i]}', prezzo_materiale = '{$prezzo[$i]}' WHERE nome = '{$nome[$i]}'";
                             if ($conn->query($sql) !== TRUE) {
                                 echo "Errore nell'aggiornamento dei dati: " . $conn->error;
                             }
@@ -111,7 +100,7 @@ input[type="submit"] {
                 }
 
                 
-                $sql_select = "SELECT * FROM materiali";
+                $sql_select = "SELECT * FROM materiale";
                 $result = $conn->query($sql_select);
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
@@ -130,6 +119,6 @@ input[type="submit"] {
         </tbody>
     </table>
 </form>
-
+<script src="../js/popup.js"></script>
 </body>
 </html>

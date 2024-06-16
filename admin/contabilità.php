@@ -55,7 +55,7 @@
         session_start(); 
         if (isset($_SESSION['nome'])) {
             $nome_maiuscolo = strtoupper(htmlspecialchars($_SESSION['nome'], ENT_QUOTES, 'UTF-8'));
-            echo "<a href='logout.php'>LOGOUT $nome_maiuscolo</a>"; 
+            echo "<a href='../pre-login/logout.php'>LOGOUT $nome_maiuscolo</a>"; 
         }
         ?>
     </div>
@@ -63,27 +63,15 @@
     <div class="container">
         <div class="balance">
             <?php
-            // Database connection parameters
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "my_vubyss";
-            
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connessione fallita: " . $conn->connect_error);
-            }
+        include '../conn/connessione.php';
             
             // Query to get total expenses
-            $sql_sum = "SELECT COALESCE(SUM(costo_totale), 0) AS spese_totali FROM acquisti";
+            $sql_sum = "SELECT COALESCE(SUM(costo_totale), 0) AS spese_totali FROM acquisto";
             $result_sum = $conn->query($sql_sum);
             
             // Check if query was successful
             if ($result_sum === false) {
-                die("Errore nella query delle spese: " . $conn->error);
+                echo"Errore nella query delle spese: " . $conn->error;
             }
             
             $row_sum = $result_sum->fetch_assoc();
@@ -94,7 +82,7 @@
             
             // Check if query was successful
             if ($result_sum_earnings === false) {
-                die("Errore nella query dei guadagni: " . $conn->error);
+                echo"Errore nella query dei guadagni: " . $conn->error;
             }
             
             $row_sum_earnings = $result_sum_earnings->fetch_assoc();
@@ -115,13 +103,7 @@
 
         <div class="table-container">
             <?php
-            // Reconnect to the database for queries
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connessione fallita: " . $conn->connect_error);
-            }
+        include '../conn/connessione.php';
 
             // Query to get purchases
             $sql_acquisti = "
@@ -133,9 +115,9 @@
                 utente.nome, 
                 utente.cognome, 
                 materiali.nome AS materiale_nome
-            FROM acquisti 
-            INNER JOIN utente ON acquisti.ID_utente = utente.ID_utente 
-            INNER JOIN materiali ON acquisti.ID_materiale = materiali.ID_materiale;
+            FROM acquisto
+            INNER JOIN utente ON acquisto.ID_utente = utente.ID_utente 
+            INNER JOIN materiale ON acquisto.ID_materiale = materiale.ID_materiale;
             ";
 
             // Execute and display purchases
@@ -143,7 +125,7 @@
             
             // Check if query was successful
             if ($result_acquisti === false) {
-                die("Errore nella query degli acquisti: " . $conn->error);
+                echo"Errore nella query degli acquisti: " . $conn->error;
             }
             
             if ($result_acquisti->num_rows > 0) {
@@ -186,7 +168,7 @@
             
             // Check if query was successful
             if ($result_prenotazioni === false) {
-                die("Errore nella query delle prenotazioni: " . $conn->error);
+                echo"Errore nella query delle prenotazioni: " . $conn->error;
             }
             
             if ($result_prenotazioni->num_rows > 0) {
@@ -209,7 +191,6 @@
             } else {
                 echo "<table><tr><td>Non ci sono prenotazioni</td></tr></table>";
             }
-
             $conn->close();
             ?>
         </div>

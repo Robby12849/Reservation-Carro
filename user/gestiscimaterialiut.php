@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title> MATERIALI </title>
-    <link rel="stylesheet" type="text/css" href="css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="../css/navbar.css">
     <style>
         /* Stili per la tabella */
         table {
@@ -43,18 +43,18 @@
             cursor: pointer;
         }
     </style>
-    <script src="js/materiali.js">
+    <script src="../js/materiali.js">
     </script>
 </head>
 <body>
 <div class="topnav">
-    <a class="active" href="index.html">Home</a>
-    <a href="storia.html">STORIA</a>
+    <a class="active" href="../index.html">Home</a>
+    <a href="../pre-login/storia.html">STORIA</a>
     <?php
     session_start();
     if (isset($_SESSION['nome'])) {
         $nome_maiuscolo = strtoupper($_SESSION['nome']);
-        echo "<a href='logout.php'>LOGOUT $nome_maiuscolo</a>";
+        echo "<a href='../pre-login/logout.php'>LOGOUT $nome_maiuscolo</a>";
     }
     ?>
     <a href="paginautente.php">PRENOTAZIONI</a>
@@ -62,23 +62,14 @@
 <h1>Modifica Dati Materiale</h1>
 
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "db_carro";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    echo "Connessione fallita: " . $conn->connect_error;
-}
+include '../conn/connessione.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["nome"], $_POST["quantita"])) {
         $nome = $_POST["nome"];
         $quantita = $_POST["quantita"];
         for ($i = 0; $i < count($nome); $i++) {
-            $sql = "UPDATE materiali SET quantità = '{$quantita[$i]}' WHERE nome = '{$nome[$i]}'";
+            $sql = "UPDATE materiale SET quantità = '{$quantita[$i]}' WHERE nome = '{$nome[$i]}'";
             if ($conn->query($sql) !== TRUE) {
                 echo "Errore nell'aggiornamento dei dati: " . $conn->error;
             }
@@ -92,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id_materiale = $_POST["id_materiale"];
 
         for ($i = 0; $i < count($prezzo_totale); $i++) {
-            $sql = "INSERT INTO acquisti (costo_totale, quantità, ID_utente, ID_materiale) 
+            $sql = "INSERT INTO acquisto (costo_totale, quantità, ID_utente, ID_materiale) 
                     VALUES ('{$prezzo_totale[$i]}', '{$quantita_acquistata[$i]}', '$id_utente', '$id_materiale')";
             if ($conn->query($sql) !== TRUE) {
                 echo "Errore nell'inserimento dei dati: " . $conn->error;
@@ -116,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </thead>
         <tbody>
         <?php
-        $sql_select = "SELECT * FROM materiali";
+        $sql_select = "SELECT * FROM materiale";
         $result = $conn->query($sql_select);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
