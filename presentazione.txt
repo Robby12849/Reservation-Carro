@@ -1,0 +1,145 @@
+CARROWEBAPP è un'applicazione web sviluppata in PHP, HTML, JS E CSS per la gestione del carro di carnevale di un carrista di Grumo Appula. Questa web app gestisce le varie prenotazioni degli utenti che partecipano al carro. Oltre questo si possono anche acquistare in beneficenza materiali che servono alla costruzione del carro. Da qui ci sono 2 viste quella dei partecipanti i quali possono solo acquistare i materiali e portarli al capannone del carro e versare le quote per supportare il carro.  Queste transazioni vengono inserite nel bilancio(differenza tra versamenti e acquisti ) annuale del carro visualizzabile solo dagli admin del sito. L’altra vista è quella dell’admin il quale può modificare la quantità e il prezzo del materiale selezionato. Se le entrate sono maggiori delle uscite si tratta di bilancio positivo altrimenti negativo. Nel bilancio inoltre si visualizzano tutti i versamenti e tutti gli acquisti degli utenti. C’è anche una barra di navigazione che contiene i vari reindirizzamenti  per le varie pagine. Per il login è stato fatto un container con lo sfondo dell’ultimo carro svolto. Il login è formato da un form nel quale vengono inseriti i dati (email e password) che tramite una post spedisce i dati a una pagina la quale ha il compito di controllare la validità . Per implementare questa webapp è necessario ricorrere a un database PhpMyAdmin. Come prima cosa ho ideato le tabelle: 
+-	Utente ovvero una tabella che gestisce i vari utenti 
+-	Prenotazione che gestisce le varie prenotazioni dei vari utenti infatti troviamo una FK(ID_utente)
+-	Materiali ovvero la tabella che gestisce i materiali
+-	Acquisti che gestisce gli acquisti di un determinato materiale di un determinato utente anche questo gestito tramite le FK (ID_utente, ID_materiale)
+Dopo aver capito quali tabelle costruire e a cosa ci servono ho costruito uno schema E/R.
+
+SCHEMA E/R
+
+FOTO SU GITHUB
+
+Questo schema ER (Entity-Relationship) rappresenta un database chiamato db_carro e comprende quattro tabelle: utente, prenotazione, acquisti e materiali. Ecco una descrizione delle tabelle e delle relazioni tra di esse:
+1.	Tabella utente
+o	ID_utente (int, chiave primaria): Identificativo unico per ogni utente.
+o	nome (varchar(50)): Nome dell'utente.
+o	cognome (varchar(50)): Cognome dell'utente.
+o	email (varchar(60)): Indirizzo email dell'utente.
+o	password (varchar(256)): Password dell'utente.
+o	telefono (bigint(20)): Numero di telefono dell'utente.
+o	ruolo (varchar(20)): Ruolo dell'utente nel sistema.
+2.	Tabella prenotazione
+o	ID_prenotazione (int, chiave primaria): Identificativo unico per ogni prenotazione.
+o	ID_utente (int, chiave esterna): Riferimento all'utente che ha effettuato la prenotazione.
+o	data (timestamp): Data e ora della prenotazione.
+o	quota_versata (int): Quota versata per la prenotazione.
+La tabella prenotazione è collegata alla tabella utente tramite la chiave esterna ID_utente.
+3.	Tabella acquisti
+o	ID_acquisto (int, chiave primaria): Identificativo unico per ogni acquisto.
+o	ID_utente (int, chiave esterna): Riferimento all'utente che ha effettuato l'acquisto.
+o	ID_materiale (int, chiave esterna): Riferimento al materiale acquistato.
+o	data (date): Data dell'acquisto.
+o	costo_totale (int): Costo totale dell'acquisto.
+o	quantità (int): Quantità del materiale acquistato.
+La tabella acquisti è collegata sia alla tabella utente tramite la chiave esterna ID_utente, sia alla tabella materiali tramite la chiave esterna ID_materiale.
+4.	Tabella materiali
+o	ID_materiale (int, chiave primaria): Identificativo unico per ogni materiale.
+o	nome (varchar(60)): Nome del materiale.
+o	quantità (int): Quantità disponibile del materiale.
+o	prezzo_materiale (int): Prezzo unitario del materiale.
+In sintesi, questo schema ER descrive un sistema in cui gli utenti possono fare prenotazioni e acquisti di materiali. Ogni prenotazione è legata a un utente specifico, e ogni acquisto è legato sia a un utente che a un materiale specifico.
+
+
+
+
+Le associazioni sono: 
+Associazione tra utente e prenotazione:
+1-	Tipo di relazione: Uno-a-Molti
+Descrizione: Un singolo utente (utente) può effettuare molteplici prenotazioni (prenotazione), ma ogni prenotazione è associata a un solo utente.
+Dettagli tecnici:
+o	La tabella prenotazione contiene la chiave esterna ID_utente, che fa riferimento alla chiave primaria ID_utente nella tabella utente.
+Associazione tra utente e acquisti:
+Tipo di relazione: Uno-a-Molti 
+Descrizione: Un singolo utente (utente) può effettuare molti acquisti (acquisti), ma ogni acquisto è associato a un solo utente.
+Dettagli tecnici:
+a.	La tabella acquisti contiene la chiave esterna ID_utente, che fa riferimento alla chiave primaria ID_utente nella tabella utente.
+Associazione tra acquisti e materiali:
+Tipo di relazione: Uno-a-Molti
+Descrizione: Molti acquisti (acquisti) possono includere lo stesso materiale (materiali), ma ogni record di acquisto fa riferimento a un singolo tipo di materiale.
+Dettagli tecnici:
+o	La tabella acquisti contiene la chiave esterna ID_materiale, che fa riferimento alla chiave primaria ID_materiale nella tabella materiali.
+INTEGRITA REFERENZIALE
+Chiavi primarie: Ogni tabella ha una chiave primaria che garantisce l'unicità dei record (ID_utente, ID_prenotazione, ID_acquisto, ID_materiale).
+Chiavi esterne: Le chiavi esterne (ID_utente in prenotazione e acquisti, ID_materiale in acquisti) garantiscono la validità dei collegamenti tra le tabelle.
+
+
+SCHEMA LOGICO
+utente (ID_utente, nome, cognome, email, password, telefono, ruolo)
+prenotazione (ID_prenotazione, ID_utente, data, quota_versata)
+acquisti (ID_acquisto, ID_utente, ID_materiale, data, costo_totale, quantità)
+materiali (ID_materiale, nome, quantità, prezzo_materiale)
+SCHEMA FISICO
+-- Database: `db_carro`
+-- Struttura della tabella `acquisti`
+CREATE TABLE `acquisti` (
+  `ID_acquisto` int(11) NOT NULL,
+  `ID_utente` int(11) DEFAULT NULL,
+  `ID_materiale` int(11) DEFAULT NULL,
+  `data` date NOT NULL DEFAULT current_timestamp(),
+  `costo_totale` int(11) NOT NULL,
+  `quantità` int(11) NOT NULL
+);
+Struttura della tabella `materiali`
+CREATE TABLE `materiali` (
+  `ID_materiale` int(11) NOT NULL,
+  `nome` varchar(60) NOT NULL,
+  `quantità` int(11) NOT NULL,
+  `prezzo_materiale` int(11) NOT NULL
+);
+-- Struttura della tabella `prenotazione`
+CREATE TABLE `prenotazione` (
+  `ID_prenotazione` int(11) NOT NULL,
+  `ID_utente` int(11) NOT NULL,
+  `data` timestamp NOT NULL DEFAULT current_timestamp(),
+  `quota_versata` int(11) NOT NULL
+);
+-- Struttura della tabella `utente`
+CREATE TABLE `utente` (
+  `ID_utente` int(11) NOT NULL,
+  `nome` varchar(50) NOT NULL,
+  `cognome` varchar(50) NOT NULL,
+  `email` varchar(60) NOT NULL,
+  `password` varchar(256) NOT NULL,
+  `telefono` bigint(20) DEFAULT NULL,
+  `ruolo` varchar(20) NOT NULL DEFAULT 'partecipante'
+)
+
+
+
+--CHIAVI TABELLE
+ALTER TABLE `acquisti`
+  ADD PRIMARY KEY (`ID_acquisto`),
+  ADD KEY `ID_materiale` (`ID_materiale`),
+  ADD KEY `ID_utente` (`ID_utente`);
+
+ALTER TABLE `materiali`
+  ADD PRIMARY KEY (`ID_materiale`);
+
+ALTER TABLE `prenotazione`
+  ADD PRIMARY KEY (`ID_prenotazione`),
+  ADD KEY `ID_utente` (`ID_utente`);
+
+ALTER TABLE `utente`
+ADD PRIMARY KEY (`ID_utente`);
+
+ALTER TABLE `acquisti`
+MODIFY `ID_acquisto` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `materiali`
+MODIFY `ID_materiale` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `prenotazione`
+MODIFY `ID_prenotazione` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `utente`
+MODIFY `ID_utente` int(11) NOT NULL AUTO_INCREMENT;
+
+--GENERAZIONE FK
+ALTER TABLE `acquisti`
+  ADD CONSTRAINT `ID_materiale` FOREIGN KEY (`ID_materiale`) REFERENCES `materiali` (`ID_materiale`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `ID_utente` FOREIGN KEY (`ID_utente`) REFERENCES `utente` (`ID_utente`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+ALTER TABLE `prenotazione`
+ADD CONSTRAINT `prenotazione_ibfk_1` FOREIGN KEY (`ID_utente`) REFERENCES `utente` (`ID_utente`);
+
+QUI SI PUO TROVARE IL CODICE SORGENTE DI WEBAPPCARRO  https://github.com/Robby12849/Reservation-Carro

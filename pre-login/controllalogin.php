@@ -1,19 +1,6 @@
 <?php     
-$host = "localhost";  
-$username = "root";  
-$password = "";  
-$db_nome = "db_carro";  
+include '../conn/connessione.php';
 $tab_nome = "utente";  
-
- 
-$conn = new mysqli($host, $username, $password, $db_nome);     
-
-if ($conn->connect_errno) {        
-    echo "Impossibile connettersi al server: " . $conn->connect_error . "\n";        
-    exit;     
-}  
-
-  
 $email = strtolower($_POST["email"]);  
 $password = $_POST["password"];   
 $password = stripslashes($password);  
