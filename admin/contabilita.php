@@ -46,11 +46,9 @@
 </head>
 <body>
     <div class="topnav">
-        <a class="active" href="../index.html">Home</a>
-        <a href="../html/admin.html">CONTATTI</a>
-        <a href="../html/storia.html">STORIA</a>
+        <a class="active" href="paginaadmin.php">HOME ADMIN</a>
         <a href="gestiscimaterialiadm.php">MATERIALI</a> 
-        <a href="paginaadmin.php">QUOTE</a>    
+        <a href="contabilita.php">MATERIALI</a>
         <?php
         session_start(); 
         if (isset($_SESSION['nome'])) {

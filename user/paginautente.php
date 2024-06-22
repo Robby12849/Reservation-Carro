@@ -64,17 +64,15 @@
 </head>
 <body>
 <div class="topnav">
-    <a class="active" href="../index.html">Home</a>
-    <a href="../pre-login/admin.html">CONTATTI</a>
-    <a href="../pre-login/storia.html">STORIA</a>
-    <a href="gestiscimaterialiut.php"> MATERIALI</a>    
+    <a class="active" href="paginautente.php">PRENOTAZIONI</a>
+    <a href="gestiscimaterialiut.php">MATERIALI</a>
     <?php
-session_start(); 
-if (isset($_SESSION['nome'])) {
-    $nome_maiuscolo = strtoupper($_SESSION['nome']);
-    echo "<a href='../pre-login/logout.php'>LOGOUT $nome_maiuscolo</a>"; 
-}
-?>
+    session_start();
+    if (isset($_SESSION['nome'])) {
+        $nome_maiuscolo = strtoupper($_SESSION['nome']);
+        echo "<a href='../pre-login/logout.php'>LOGOUT $nome_maiuscolo</a>";
+    }
+    ?>
 </div>
 <div class="container">
 Inserisci quota versata<br>

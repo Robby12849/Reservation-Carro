@@ -39,19 +39,20 @@
 </head>
 <body>
 <div class="topnav">
-    <a class="active" href="../index.html">Home</a>
-    <a href="../pre-login/storia.html">STORIA</a> 
-    <a href="contabilità.php"> BILANCIO </a>   
-    <?php
-    session_start(); 
-    if (isset($_SESSION['nome'])) {
-        $nome_maiuscolo = strtoupper($_SESSION['nome']);
-        echo "<a href='../pre-login/logout.php'>LOGOUT $nome_maiuscolo</a>"; 
-    }
-    ?>
-    <a href="gestiscimaterialiadm.php"> MATERIALI </a> 
-    <a onclick="openForm()">AGGIUNGI QUOTA</a>
-</div>
+        <a class="active" href="paginaadmin.php">HOME ADMIN</a>
+        <a href="gestiscimaterialiadm.php">MATERIALI</a> 
+        <a href="contabilita.php">MATERIALI</a>
+        <a onclick="openForm()">AGGIUNGI QUOTA</a>
+        <?php
+        session_start(); 
+        if (isset($_SESSION['nome'])) {
+            $nome_maiuscolo = strtoupper(htmlspecialchars($_SESSION['nome'], ENT_QUOTES, 'UTF-8'));
+            echo "<a href='../pre-login/logout.php'>LOGOUT $nome_maiuscolo</a>"; 
+        }
+        ?>
+    </div>
+
+
 <div class="form-popup" id="myForm">
     <form action="insert_quotaadm.php" method="post" class="form-container">
         <h1>QUOTE</h1>
