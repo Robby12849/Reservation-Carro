@@ -60,6 +60,7 @@ input[type="submit"] {
         echo "<a href='../pre-login/logout.php'>LOGOUT $nome_maiuscolo</a>"; 
     }
     ?>
+    <a onclick="getInput()">AGGIUNGI MATERIALE</a>
 </div>
 
 <h1>Modifica Dati Materiale</h1>
@@ -76,7 +77,6 @@ input[type="submit"] {
         <tbody>
             <?php
 include '../conn/connessione.php';
-                
                 
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     
@@ -120,5 +120,6 @@ include '../conn/connessione.php';
     </table>
 </form>
 <script src="../js/popup.js"></script>
+<script src="../js/inseriscimateriale.js"></script>
 </body>
 </html>
