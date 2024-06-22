@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Creato il: Giu 09, 2024 alle 23:09
+-- Host: 127.0.0.1:3307
+-- Creato il: Giu 23, 2024 alle 00:03
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `acquisti`
+-- Struttura della tabella `acquisto`
 --
 
-CREATE TABLE `acquisti` (
+CREATE TABLE `acquisto` (
   `ID_acquisto` int(11) NOT NULL,
   `ID_utente` int(11) DEFAULT NULL,
   `ID_materiale` int(11) DEFAULT NULL,
@@ -37,20 +37,20 @@ CREATE TABLE `acquisti` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `acquisti`
+-- Dump dei dati per la tabella `acquisto`
 --
 
-INSERT INTO `acquisti` (`ID_acquisto`, `ID_utente`, `ID_materiale`, `data`, `costo_totale`, `quantità`) VALUES
+INSERT INTO `acquisto` (`ID_acquisto`, `ID_utente`, `ID_materiale`, `data`, `costo_totale`, `quantità`) VALUES
 (7, NULL, 1, '2024-06-06', 5, 5),
 (8, NULL, 1, '2024-06-06', 70, 70);
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `materiali`
+-- Struttura della tabella `materiale`
 --
 
-CREATE TABLE `materiali` (
+CREATE TABLE `materiale` (
   `ID_materiale` int(11) NOT NULL,
   `nome` varchar(60) NOT NULL,
   `quantità` int(11) NOT NULL,
@@ -58,10 +58,10 @@ CREATE TABLE `materiali` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `materiali`
+-- Dump dei dati per la tabella `materiale`
 --
 
-INSERT INTO `materiali` (`ID_materiale`, `nome`, `quantità`, `prezzo_materiale`) VALUES
+INSERT INTO `materiale` (`ID_materiale`, `nome`, `quantità`, `prezzo_materiale`) VALUES
 (1, 'tondini', 65, 1);
 
 -- --------------------------------------------------------
@@ -106,17 +106,17 @@ INSERT INTO `utente` (`ID_utente`, `nome`, `cognome`, `email`, `password`, `tele
 --
 
 --
--- Indici per le tabelle `acquisti`
+-- Indici per le tabelle `acquisto`
 --
-ALTER TABLE `acquisti`
+ALTER TABLE `acquisto`
   ADD PRIMARY KEY (`ID_acquisto`),
   ADD KEY `ID_materiale` (`ID_materiale`),
   ADD KEY `ID_utente` (`ID_utente`);
 
 --
--- Indici per le tabelle `materiali`
+-- Indici per le tabelle `materiale`
 --
-ALTER TABLE `materiali`
+ALTER TABLE `materiale`
   ADD PRIMARY KEY (`ID_materiale`);
 
 --
@@ -137,15 +137,15 @@ ALTER TABLE `utente`
 --
 
 --
--- AUTO_INCREMENT per la tabella `acquisti`
+-- AUTO_INCREMENT per la tabella `acquisto`
 --
-ALTER TABLE `acquisti`
+ALTER TABLE `acquisto`
   MODIFY `ID_acquisto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT per la tabella `materiali`
+-- AUTO_INCREMENT per la tabella `materiale`
 --
-ALTER TABLE `materiali`
+ALTER TABLE `materiale`
   MODIFY `ID_materiale` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -165,10 +165,10 @@ ALTER TABLE `utente`
 --
 
 --
--- Limiti per la tabella `acquisti`
+-- Limiti per la tabella `acquisto`
 --
-ALTER TABLE `acquisti`
-  ADD CONSTRAINT `ID_materiale` FOREIGN KEY (`ID_materiale`) REFERENCES `materiali` (`ID_materiale`) ON DELETE SET NULL ON UPDATE CASCADE,
+ALTER TABLE `acquisto`
+  ADD CONSTRAINT `ID_materiale` FOREIGN KEY (`ID_materiale`) REFERENCES `materiale` (`ID_materiale`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `ID_utente` FOREIGN KEY (`ID_utente`) REFERENCES `utente` (`ID_utente`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
