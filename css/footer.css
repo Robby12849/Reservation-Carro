@@ -1,0 +1,85 @@
+.site-footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 250px;
+    margin: 20px 0;
+}
+
+.footer-column h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.footer-column p,
+.footer-column ul,
+.footer-column li {
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 0;
+}
+
+.footer-column a {
+    color: #fff;
+    text-decoration: none;
+    color: none; 
+}
+
+.footer-column a:hover {
+    text-decoration: underline;
+}
+
+/* Stile per i link ai social media */
+.social-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.social-links li {
+    display: inline;
+}
+
+.social-links a {
+    color: #fff;
+    font-size: 1.5em;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #00aaff;
+}
+
+/* Sezione inferiore del footer */
+.footer-bottom {
+    background-color: #222;
+    padding: 10px 0;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+/* Stile responsivo */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}

@@ -3,6 +3,9 @@
 <head>
     <title> MATERIALI </title>
     <link rel="stylesheet" type="text/css" href="../css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="../css/footer.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+
     <style>
         /* Stili per la tabella */
         table {
@@ -132,5 +135,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
 $conn->close();
 ?>
+      <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Sito contribuito da</h3>
+                <p>Disegnato da <a href="#" target="_blank">ROBERTO DE BARI</a></p>
+                <p>Sviluppato da <a href="#" target="_blank">ROBERTO DE BARI </a></p>
+            </div>
+            <div class="footer-column">
+                <h3>Contatti</h3>
+                <ul>
+                    <li>Email: <a href="mailto:robydebari2005@gmail.com">robydebari2005@gmail.com</a></li>
+                    <li>Telefono: <a href="tell:3383004741">3383004741</a></li>
+                    <li>Indirizzo: Via Falcone 1, Palo del colle, Bari</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Seguici</h3>
+                <ul class="social-links">
+                    <li><a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Your Company. All Rights Reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
