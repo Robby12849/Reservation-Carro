@@ -158,7 +158,7 @@ include '../conn/connessione.php';
 <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-column">
-                <h3>Sito contribuito da</h3>
+                <h3>Sito </h3>
                 <p>Disegnato da <a href="#" target="_blank">ROBERTO DE BARI</a></p>
                 <p>Sviluppato da <a href="#" target="_blank">ROBERTO DE BARI</a></p>
             </div>
