@@ -44,7 +44,7 @@
 <div class="topnav">
         <a class="active" href="paginaadmin.php">HOME ADMIN</a>
         <a href="gestiscimaterialiadm.php">MATERIALI</a> 
-        <a href="contabilita.php">MATERIALI</a>
+        <a href="contabilita.php">BILANCIO</a>
         <a onclick="openForm()">AGGIUNGI QUOTA</a>
         <?php
         session_start(); 

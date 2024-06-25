@@ -52,7 +52,7 @@
     <div class="topnav">
         <a class="active" href="paginaadmin.php">HOME ADMIN</a>
         <a href="gestiscimaterialiadm.php">MATERIALI</a> 
-        <a href="contabilita.php">MATERIALI</a>
+        <a href="contabilita.php">BILANCIO</a>
         <?php
         session_start(); 
         if (isset($_SESSION['nome'])) {
@@ -110,13 +110,13 @@
             // Query to get purchases
             $sql_acquisti = "
             SELECT 
-                acquisti.ID_materiale, 
-                acquisti.data AS acquisti_data,  
-                acquisti.costo_totale, 
-                acquisti.quantità AS acquisti_quantità, 
+                acquisto.ID_materiale, 
+                acquisto.data AS acquisti_data,  
+                acquisto.costo_totale, 
+                acquisto.quantità AS acquisti_quantità, 
                 utente.nome, 
                 utente.cognome, 
-                materiali.nome AS materiale_nome
+                materiale.nome AS materiale_nome
             FROM acquisto
             INNER JOIN utente ON acquisto.ID_utente = utente.ID_utente 
             INNER JOIN materiale ON acquisto.ID_materiale = materiale.ID_materiale;
