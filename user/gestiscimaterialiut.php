@@ -140,21 +140,22 @@ $conn->close();
             <div class="footer-column">
                 <h3>Sito contribuito da</h3>
                 <p>Disegnato da <a href="#" target="_blank">ROBERTO DE BARI</a></p>
-                <p>Sviluppato da <a href="#" target="_blank">ROBERTO DE BARI </a></p>
+                <p>Sviluppato da <a href="#" target="_blank">ROBERTO DE BARI</a></p>
             </div>
             <div class="footer-column">
                 <h3>Contatti</h3>
                 <ul>
-                    <li>Email: <a href="mailto:robydebari2005@gmail.com">robydebari2005@gmail.com</a></li>
-                    <li>Telefono: <a href="tell:3383004741">3383004741</a></li>
-                    <li>Indirizzo: Via Falcone 1, Palo del colle, Bari</li>
+                    <li>EMAIL: <a href="mailto:robydebari2005@gmail.com">robydebari2005@gmail.com</a></li>
+                    <li>TELEFONO: <a href="tel:3383004741">3383004741</a></li>
+                    <li><a href="wa.link/rk88lz" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Seguici</h3>
+                <h3>Seguimi su </h3>
                 <ul class="social-links">
                     <li><a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
                     <li><a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="https://github.com/Robby12849" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
                     <li><a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
                 </ul>
             </div>
