@@ -133,7 +133,7 @@ include '../conn/connessione.php';
                 <ul>
                     <li>EMAIL: <a href="mailto:robydebari2005@gmail.com">robydebari2005@gmail.com</a></li>
                     <li>TELEFONO: <a href="tel:3383004741">3383004741</a></li>
-                    <li><a href="wa.link/rk88lz" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                    <li><a href="https://wa.me/3383004741" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
                 </ul>
             </div>
             <div class="footer-column">
