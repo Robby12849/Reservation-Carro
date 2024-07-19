@@ -45,7 +45,7 @@
         <a class="active" href="paginaadmin.php">HOME ADMIN</a>
         <a href="gestiscimaterialiadm.php">MATERIALI</a> 
         <a href="contabilita.php">BILANCIO</a>
-        <a onclick="openForm()">AGGIUNGI QUOTA</a>
+        <a href="aggihnginotizie.php">NOTIZIE</a>
         <?php
         session_start(); 
         if (isset($_SESSION['nome'])) {
@@ -53,7 +53,7 @@
             echo "<a href='../pre-login/logout.php'>LOGOUT $nome_maiuscolo</a>"; 
         }
         ?>
-    </div>
+</div> 
 
 
 <div class="form-popup" id="myForm">

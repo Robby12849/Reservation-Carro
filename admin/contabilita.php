@@ -5,8 +5,6 @@
     <link rel="stylesheet" href="../css/navbar.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="../css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
-
-
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -49,10 +47,11 @@
     </style>
 </head>
 <body>
-    <div class="topnav">
+<div class="topnav">
         <a class="active" href="paginaadmin.php">HOME ADMIN</a>
         <a href="gestiscimaterialiadm.php">MATERIALI</a> 
         <a href="contabilita.php">BILANCIO</a>
+        <a href="aggihnginotizie.php">NOTIZIE</a>
         <?php
         session_start(); 
         if (isset($_SESSION['nome'])) {
@@ -60,7 +59,7 @@
             echo "<a href='../pre-login/logout.php'>LOGOUT $nome_maiuscolo</a>"; 
         }
         ?>
-    </div>
+</div> 
     <h1>ECCO LA CONTABILITA DEL CARRO</h1>
     <div class="container">
         <div class="balance">

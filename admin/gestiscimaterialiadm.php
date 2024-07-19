@@ -54,8 +54,7 @@ input[type="submit"] {
         <a class="active" href="paginaadmin.php">HOME ADMIN</a>
         <a href="gestiscimaterialiadm.php">MATERIALI</a> 
         <a href="contabilita.php">BILANCIO</a>
-        <a onclick="openForm()">AGGIUNGI QUOTA</a>
-        <a onclick="getInput()">AGGIUNGI MATERIALE</a>
+        <a href="aggihnginotizie.php">NOTIZIE</a>
         <?php
         session_start(); 
         if (isset($_SESSION['nome'])) {
@@ -63,7 +62,7 @@ input[type="submit"] {
             echo "<a href='../pre-login/logout.php'>LOGOUT $nome_maiuscolo</a>"; 
         }
         ?>
-    </div>
+</div> 
 
 <h1>Modifica Dati Materiale</h1>
 
