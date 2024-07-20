@@ -31,6 +31,7 @@ border-radius:15px;
 font-size: large;
 border: #000 solid 2px;
 background-color: #f44336;
+cursor: crosshair;
 }
 
 .cancelbtn {

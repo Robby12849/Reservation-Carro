@@ -50,11 +50,11 @@ input[type="submit"] {
 </head>
 <body>
     
-<div class="topnav">
+<div class="topnav" id="top">
         <a class="active" href="paginaadmin.php">HOME ADMIN</a>
         <a href="gestiscimaterialiadm.php">MATERIALI</a> 
         <a href="contabilita.php">BILANCIO</a>
-        <a href="aggihnginotizie.php">NOTIZIE</a>
+        <a href="aggiunginotizie.php">NOTIZIE</a>
         <?php
         session_start(); 
         if (isset($_SESSION['nome'])) {
