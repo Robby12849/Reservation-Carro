@@ -22,37 +22,28 @@
         ?>
 </div>  
 <div class="supercontainer" >
-<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
-
-<div id="id01" class="modal">
-  
-  <form class="modal-content animate" action="/action_page.php" method="post">
+    <button onclick="document.getElementById('id01').style.display='block'" class="notiziebtn"> AGGIUNGI NOTIZIA </button>
+    <div id="id01" class="modal">
+  <form class="modal-content animate" action="aggiunginotiziascript.php" method="post">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+      <img src="../assets/img/notizia.jpg" alt="Avatar" class="avatar">
     </div>
-
     <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
+        <label for="titolo"><b>TITOLO </b></label> <br>
+        <input type="text" placeholder="Inserisci il titolo" name="titolo" id="titolo" required><br>
 
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-        
-      <button type="submit">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
+      <label for="contenuto"><b>CONTENUTO </b></label> <br>
+      <input type="text" placeholder="Inserisci il contenuto" name="contenuto" id="contenuto"required><br>
+
+      <label for="data"><b>DATA DI RIFERIMENTO</b></label><br>
+      <input type="date" placeholder="Inserisci la data da quando il contenuto è valido" id="data" name="data"><br>
+
+      <button type="submit">Inserisci</button>
     </div>
-
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
+    </form>
     </div>
-  </form>
 </div>
-</div>
-
 <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-column">
