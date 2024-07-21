@@ -46,37 +46,34 @@
     <div class="news-container"></div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            function fetchNewsFromServer() {
-                return fetch('prendinews.php')
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data); 
-                        return data;
-                    });
+            async function fetchNewsFromServer() {
+                try {
+                    const response = await fetch('prendinews.php');
+                    const data = await response.json();
+                    return data;
+                } catch (error) {
+                    console.error('Error fetching news:', error);
+                    return [];
+                }
             }
-
             function displayNews(newsItems) {
                 const newsContainer = document.querySelector('.news-container');
+                newsContainer.innerHTML = '';
                 let newsRow;
-
                 newsItems.forEach((item, index) => {
-                    if (index % 4 === 0) {
+                    if (index % 6 === 0) {
                         newsRow = document.createElement('div');
                         newsRow.classList.add('news-row');
                         newsContainer.appendChild(newsRow);
                     }
-
                     const newsItem = document.createElement('div');
                     newsItem.classList.add('news-item');
                     newsItem.innerHTML = `<h2>${item.titolo}</h2><p>${item.data_di_riferimento}</p><p>${item.notizia}</p>`;
                     newsRow.appendChild(newsItem);
                 });
             }
-
             fetchNewsFromServer().then(newsItems => {
                 displayNews(newsItems);
-            }).catch(error => {
-                console.error('Error fetching news:', error);
             });
         });
     </script>
