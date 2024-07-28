@@ -43,40 +43,27 @@
             </div>
         </form>
     </div>
-    <div class="news-container"></div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            async function fetchNewsFromServer() {
-                try {
-                    const response = await fetch('prendinews.php');
-                    const data = await response.json();
-                    return data;
-                } catch (error) {
-                    console.error('Error fetching news:', error);
-                    return [];
-                }
+    <div class="news-container">
+        <?php
+        include '../conn/connessione.php';
+        
+        $sql = "SELECT titolo, notizia FROM notizia";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            
+            while ($row = $result->fetch_assoc()) {
+                echo '<div class="news-item">';
+                echo '<h2>' . $row["titolo"] . '</h2>';
+                echo '<p>' . $row["notizia"] . '</p>';
+                echo '</div>';
             }
-            function displayNews(newsItems) {
-                const newsContainer = document.querySelector('.news-container');
-                newsContainer.innerHTML = '';
-                let newsRow;
-                newsItems.forEach((item, index) => {
-                    if (index % 6 === 0) {
-                        newsRow = document.createElement('div');
-                        newsRow.classList.add('news-row');
-                        newsContainer.appendChild(newsRow);
-                    }
-                    const newsItem = document.createElement('div');
-                    newsItem.classList.add('news-item');
-                    newsItem.innerHTML = `<h2>${item.titolo}</h2><p>${item.data_di_riferimento}</p><p>${item.notizia}</p>`;
-                    newsRow.appendChild(newsItem);
-                });
-            }
-            fetchNewsFromServer().then(newsItems => {
-                displayNews(newsItems);
-            });
-        });
-    </script>
+        } else {
+            echo "0 risultati";
+        }
+        $conn->close();
+        ?>
+    </div>
 </div>
 <footer class="site-footer">
     <div class="footer-container">
